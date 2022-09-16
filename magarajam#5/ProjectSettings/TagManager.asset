@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Dust
+  - Metilamin
+  - Sudafed
+  - Combining
+  - Ilac
+  - Dust2
+  - Metilamin2
+  - Ilac2
+  - Sudafed2
+  - Trash
   layers:
   - Default
   - TransparentFX
