@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class customerController : MonoBehaviour
 {
+    Vector3 nextPos;
+    public GameObject customer;
+    public GameObject movepoint1,movepoint2;
     public Text customerSaying;
     
     public GameObject marketElements;
@@ -14,6 +17,8 @@ public class customerController : MonoBehaviour
     public string[] susTexts;
     private bool isBusy = false;
     string customerName;
+    bool isWay;
+    bool goingCash;
     
     int detectCustomer;
     // Start is called before the first frame update
@@ -23,23 +28,65 @@ public class customerController : MonoBehaviour
     }
     void Start()
     {
-        randomCustomer();
+        marketElements.SetActive(false);
+        customer.transform.position = movepoint1.transform.position;
+        moveCustomerIn();
+        
+        //moveCustomerIn();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("asd");
+            moveCustomerOut();
+        }
+        if (goingCash == true)
+        {
+            if (isWay == true)
+            {
+                if (Vector3.Distance(customer.transform.position,movepoint2.transform.position) <= 0.1f)
+                {
+                    Debug.Log(1);
+                    isWay = false;
+                    randomCustomer();
+                }
+                else
+                {
+                    Debug.Log(2);
+                    customer.transform.position = Vector3.MoveTowards(customer.transform.position,movepoint2.transform.position,Time.deltaTime *2);
+                }
+            }
+        }
+        else
+        {
+            if (isWay == true)
+            {
+                if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
+                {
+                    Debug.Log(3);
+                    isWay = false;
+                    
+                }
+                else
+                {
+                    customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime *2);
+                }
+            }
+        }
         
     }
     void randomCustomer()
     {
         isBusy = true;
         int a = Random.Range(0,allCustomers.Length);
-        Debug.Log(a);
         allCustomers[a].enabled = true;
         marketElements.SetActive(true);
         customerName = allCustomers[a].name;
         detection();
+        
     }
     void detection()
     {
@@ -74,13 +121,19 @@ public class customerController : MonoBehaviour
     }
     void moveCustomerIn()
     {
-        //a konumundan b konumuna git
+        // a konumundan b konumuna git
+        
+        isWay = true;
+        goingCash = true;
+        nextPos = movepoint2.transform.position;
+
     }
     void moveCustomerOut()
     {
         //b konumundan a konumuna git
-        isBusy = false;
-        randomCustomer();
+        nextPos = movepoint1.transform.position;
+        isWay = true;
+        goingCash = false;
     }
     void defaultBuy()
     {
@@ -103,5 +156,6 @@ public class customerController : MonoBehaviour
         //müşteri kim
         //ona özel tarifeyle art
         //bura kesin değişicek aq
+        
     }
 }
