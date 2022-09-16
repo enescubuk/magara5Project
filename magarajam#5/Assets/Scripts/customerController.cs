@@ -12,6 +12,7 @@ public class customerController : MonoBehaviour
     
     public GameObject marketElements;
     public Image[] allCustomers;
+    int randomCustomerNumber;
 
     public string[] normalTexts;
     public string[] susTexts;
@@ -29,6 +30,7 @@ public class customerController : MonoBehaviour
     void Start()
     {
         marketElements.SetActive(false);
+        allCustomers[randomCustomerNumber].enabled = false;
         customer.transform.position = movepoint1.transform.position;
         moveCustomerIn();
         
@@ -68,7 +70,7 @@ public class customerController : MonoBehaviour
                 {
                     Debug.Log(3);
                     isWay = false;
-                    
+                    moveCustomerIn();
                 }
                 else
                 {
@@ -81,10 +83,11 @@ public class customerController : MonoBehaviour
     void randomCustomer()
     {
         isBusy = true;
-        int a = Random.Range(0,allCustomers.Length);
-        allCustomers[a].enabled = true;
+        
+        randomCustomerNumber = Random.Range(0,allCustomers.Length);
+        allCustomers[randomCustomerNumber].enabled = true;
         marketElements.SetActive(true);
-        customerName = allCustomers[a].name;
+        customerName = allCustomers[randomCustomerNumber].name;
         detection();
         
     }
@@ -118,6 +121,7 @@ public class customerController : MonoBehaviour
     public void toProduction()
     {
         marketElements.SetActive(false);
+        
     }
     void moveCustomerIn()
     {
