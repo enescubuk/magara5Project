@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     private Vector3 input;
 
     AudioSource audioSource;
+
+    Animator anim;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,6 +40,7 @@ public class Movement : MonoBehaviour
     void Move()
     {
         rb.MovePosition(transform.position + (transform.forward * input.magnitude) * speed * Time.deltaTime);
+        anim.SetBool("Walk",true);
     }
     void Look()
     {
