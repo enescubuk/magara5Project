@@ -6,9 +6,11 @@ using DG.Tweening;
 public class Movement : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] float speed;
+    [SerializeField] float speed = 7f;
     [SerializeField] float turnSpeed = 360;
     private Vector3 input;
+
+    AudioSource audioSource;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,12 +20,14 @@ public class Movement : MonoBehaviour
     {
         GetInput();
         Look();
-        
+        Move();
+        PowerSound();
+
     }
 
     private void FixedUpdate()
     {
-        Move();
+        
     }
 
     void GetInput()
@@ -45,5 +49,14 @@ public class Movement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation,rot, turnSpeed * Time.deltaTime);
         }
         
+    }
+
+    void PowerSound()
+    {
+        if (Input.GetKey(KeyCode.K))
+        {
+            GetComponent<AudioSource>().enabled = false;
+        }else
+        GetComponent<AudioSource>().enabled = true;
     }
 }

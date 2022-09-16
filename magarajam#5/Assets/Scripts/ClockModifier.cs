@@ -17,6 +17,7 @@ public class ClockModifier : MonoBehaviour
 
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         clockHandTransform = transform.Find("ClockHandler");
+        clockHandTransform.eulerAngles = new Vector3(0, 0, 90);
         ClockTime = timer.timerLeft;
     }
 
