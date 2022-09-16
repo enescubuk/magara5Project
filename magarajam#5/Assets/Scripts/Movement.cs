@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     Animator anim;
     private void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
