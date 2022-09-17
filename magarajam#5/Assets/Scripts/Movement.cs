@@ -40,9 +40,21 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
-        rb.MovePosition(transform.position + (transform.forward * input.magnitude) * speed * Time.deltaTime);
-        anim.SetBool("Walk",true);
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 )
+        {
+            rb.MovePosition(transform.position + (transform.forward * input.magnitude) * speed * Time.deltaTime);
+            anim.SetBool("Walk",true);
+            GetComponent<AudioSource>().enabled = true;
+        }
+        else
+        {
+            anim.SetBool("Walk",false);
+            GetComponent<AudioSource>().enabled = false;
+        }
+        
     }
+    
+    
     void Look()
     {
         if (input != Vector3.zero)
@@ -59,7 +71,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K))
         {
-            GetComponent<AudioSource>().enabled = false;
+            
         }else
         GetComponent<AudioSource>().enabled = true;
     }

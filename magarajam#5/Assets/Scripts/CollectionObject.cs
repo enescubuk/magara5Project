@@ -2,12 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollectionObject : MonoBehaviour
 {
+    [Header("İLAÇLAR")]
     private int dust, metilamin, sudafed, B69k, K57s,ilac,ilac2;
     public GameObject dustTable, metiTable, sudaTable,k57sTable,b69kTable,ilacTable,ilacTable2;
     private bool dustCont, metiCont, sudaCont, ilacCont,ilacCont2, handControl = true;
+    [Header("TARİF KİTABI")]
+    public static bool recipeControl;
+
+    [Header("HUD RESİMLER")] 
+    public Image dustImage;
+    public Image metilaminImage;
+    public Image sudafedImage;
+    public Image ilacImage;
+    public Image ilac2Image;
     void Update()
     {
         Combiningk57s();
@@ -21,6 +32,7 @@ public class CollectionObject : MonoBehaviour
              
             if (Input.GetKey(KeyCode.R))
             {
+                
                 dust += 1;
                 dustTable.SetActive(false);
             }
@@ -54,55 +66,112 @@ public class CollectionObject : MonoBehaviour
         }
     }
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Recipe"))
+        {
+            recipeControl = true;
+        }
         if (other.gameObject.CompareTag("Dust"))
         {
-            dust += 1;
-            if (handControl)
+            if (metilamin == 0 && sudafed == 0 && ilac == 0 && ilac2 == 0)
             {
-                TMPControl.dus -= 1;
-                handControl = false;
+                dust += 1;
+                if (handControl)
+                {
+                    TMPControl.dus -= 1;
+                    handControl = false;
+                }
+
+                dustImage.gameObject.SetActive(true);
+                metilaminImage.gameObject.SetActive(false);
+                sudafedImage.gameObject.SetActive(false);
+                ilacImage.gameObject.SetActive(false);
+                ilac2Image.gameObject.SetActive(false);
             }
             
+
         }
         if (other.gameObject.CompareTag("Metilamin"))
         {
-            metilamin += 1;
-            if (handControl)
+            if (dust == 0 && sudafed == 0 && ilac == 0 && ilac2 == 0)
             {
-                TMPControl.meti -= 1;
-                handControl = false;
+                metilamin += 1;
+                if (handControl)
+                {
+                    TMPControl.meti -= 1;
+                    handControl = false;
+                }
+            
+                dustImage.gameObject.SetActive(false);
+                metilaminImage.gameObject.SetActive(true);
+                sudafedImage.gameObject.SetActive(false);
+                ilacImage.gameObject.SetActive(false);
+                ilac2Image.gameObject.SetActive(false);
             }
+
+            
         }
         if (other.gameObject.CompareTag("Sudafed"))
         {
-            sudafed += 1;
-            if (handControl)
+            if (dust == 0 && metilamin == 0 && ilac == 0 && ilac2 == 0)
             {
-                TMPControl.suda -= 1;
-                handControl = false;
+                sudafed += 1;
+                if (handControl)
+                {
+                    TMPControl.suda -= 1;
+                    handControl = false;
+                }
+                dustImage.gameObject.SetActive(false);
+                metilaminImage.gameObject.SetActive(false);
+                sudafedImage.gameObject.SetActive(true);
+                ilacImage.gameObject.SetActive(false);
+                ilac2Image.gameObject.SetActive(false);
             }
+
+            
         }
 
         if (other.gameObject.CompareTag("Ilac"))
         {
-            ilac += 1;
-            if (handControl)
+            if (dust == 0 && sudafed == 0 && metilamin == 0 && ilac2 == 0)
             {
-                TMPControl.agrik -= 1;
-                handControl = false;
+                ilac += 1;
+                if (handControl)
+                {
+                    TMPControl.agrik -= 1;
+                    handControl = false;
+                }
+                
+                dustImage.gameObject.SetActive(false);
+                metilaminImage.gameObject.SetActive(false);
+                sudafedImage.gameObject.SetActive(false);
+                ilacImage.gameObject.SetActive(false);
+                ilac2Image.gameObject.SetActive(true);
             }
+            
         }
         
         if (other.gameObject.CompareTag("Ilac3"))
         {
-            ilac2 += 1;
-            if (handControl)
+            if (dust == 0 && sudafed == 0 && ilac == 0 && metilamin == 0)
             {
-                TMPControl.atesd -= 1;
-                handControl = false;
+                ilac2 += 1;
+                if (handControl)
+                {
+                    TMPControl.atesd -= 1;
+                    handControl = false;
+                }
+                
+                dustImage.gameObject.SetActive(false);
+                metilaminImage.gameObject.SetActive(false);
+                sudafedImage.gameObject.SetActive(false);
+                ilacImage.gameObject.SetActive(true);
+                ilac2Image.gameObject.SetActive(false); 
             }
+           
         }
         //çöp kutusu
 
@@ -112,22 +181,27 @@ public class CollectionObject : MonoBehaviour
             {
                 dust -= 1;
                 handControl = true;
+                dustImage.gameObject.SetActive(false);
             }else if (metilamin >= 1)
             {
                 metilamin -= 1;
                 handControl = true;
+                metilaminImage.gameObject.SetActive(false);
             }else if (sudafed >= 1)
             {
                 sudafed -= 1;
                 handControl = true;
+                sudafedImage.gameObject.SetActive(false);
             }else if (ilac >= 1)
             {
                 ilac -= 1;
                 handControl = true;
+                ilac2Image.gameObject.SetActive(false);
             }else if (ilac2 >= 1)
             {
                 ilac2 -= 1;
                 handControl = true;
+                ilacImage.gameObject.SetActive(false); 
             }
         }
         
@@ -144,6 +218,7 @@ public class CollectionObject : MonoBehaviour
                 sudaTable.SetActive(true);
                 sudaCont = true;
                 sudafed -= 1;
+                //sudafedImage.gameObject.SetActive(false);
                 
             }else if (metilamin > 0)
             {
@@ -155,6 +230,7 @@ public class CollectionObject : MonoBehaviour
                 
                 metiCont = true;
                 metilamin -= 1;
+                //metilaminImage.gameObject.SetActive(false);
                 
             }else if (dust > 0)
             {
@@ -165,6 +241,7 @@ public class CollectionObject : MonoBehaviour
                 dustTable.SetActive(true);
                 dustCont = true;
                 dust -= 1;
+                // dustImage.gameObject.SetActive(false);
                 
             }else if (ilac > 0)
             {
@@ -175,6 +252,7 @@ public class CollectionObject : MonoBehaviour
                 ilacTable.SetActive(true);
                 ilacCont = true;
                 ilac -= 1;
+                //ilacImage.gameObject.SetActive(false);
                 
             }else if (ilac2 > 0)
             {
@@ -185,6 +263,7 @@ public class CollectionObject : MonoBehaviour
                 ilacTable2.SetActive(true);
                 ilacCont2 = true;
                 ilac2 -= 1;
+                //ilac2Image.gameObject.SetActive(false); 
                 
             }
         }
