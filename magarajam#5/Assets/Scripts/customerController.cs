@@ -5,161 +5,99 @@ using UnityEngine.UI;
 
 public class customerController : MonoBehaviour
 {
-    Vector3 nextPos;
+    public Transform movepoint,movepoint1;
+    public GameObject[] allCustomerTypes;
+    public Sprite[] allCustomerProfiles;
+    private Vector3 nextPos;
     public GameObject customer;
-    public GameObject movepoint1,movepoint2;
+    private bool isWay;
+    public GameObject marketElements;
+    public GameObject profileImage;
+    private int randomCustomerNumber;
+    private int randomTalkingNumber;
     public Text customerSaying;
     
-    public GameObject marketElements;
-    public Image[] allCustomers;
-    int randomCustomerNumber;
-
-    public string[] normalTexts;
-    public string[] susTexts;
-    private bool isBusy = false;
-    string customerName;
-    bool isWay;
-    bool goingCash;
-    
-    int detectCustomer;
-    // Start is called before the first frame update
-    private void Awake()  
-    {
-        //customerSaying = GameObject.Find("customerSaying").GetComponent<Text>();
-    }
+    public string[] sickTexts;
+    public string[] addictTexts;
+    public string[] copTexts;
     void Start()
     {
-        marketElements.SetActive(false);
-        allCustomers[randomCustomerNumber].enabled = false;
-        customer.transform.position = movepoint1.transform.position;
-        moveCustomerIn();
-        
-        //moveCustomerIn();
+        spawnCustomer();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (isWay == true)
         {
-            Debug.Log("asd");
-            moveCustomerOut();
-        }
-        if (goingCash == true)
-        {
-            if (isWay == true)
+            customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime * 2);
+            if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
             {
-                if (Vector3.Distance(customer.transform.position,movepoint2.transform.position) <= 0.1f)
+                isWay = false;
+                Debug.Log(1);
+                if (Vector3.Distance(customer.transform.position,movepoint.position) > Vector3.Distance(customer.transform.position,movepoint1.position))
                 {
-                    Debug.Log(1);
-                    isWay = false;
-                    randomCustomer();
+                    //cashe yakın
+                    inCash();
                 }
                 else
                 {
-                    Debug.Log(2);
-                    customer.transform.position = Vector3.MoveTowards(customer.transform.position,movepoint2.transform.position,Time.deltaTime *2);
-                }
-            }
-        }
-        else
-        {
-            if (isWay == true)
-            {
-                if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
-                {
-                    Debug.Log(3);
-                    isWay = false;
-                    moveCustomerIn();
-                }
-                else
-                {
-                    customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime *2);
+                    Debug.Log("başa döndü");
+                    Destroy(customer);
+                    waitingNewCustomer(3);
+                    
                 }
             }
         }
         
     }
-    void randomCustomer()
+    void spawnCustomer()
     {
-        isBusy = true;
-        
-        randomCustomerNumber = Random.Range(0,allCustomers.Length);
-        allCustomers[randomCustomerNumber].enabled = true;
-        marketElements.SetActive(true);
-        customerName = allCustomers[randomCustomerNumber].name;
-        detection();
-        
-    }
-    void detection()
-    {
-        if (customerName.Contains("normal"))
-        {
-            detectCustomer = 0;
-        }
-        else if (customerName.Contains("sus"))
-        {
-            detectCustomer = 1;
-        }
-        whatCustomerSay();
-    }
-    
-    void whatCustomerSay()
-    {
-        switch (detectCustomer)
-        {
-            case 0: 
-                Debug.Log("normal");
-                customerSaying.text = normalTexts[Random.Range(0,normalTexts.Length)];
-                    break;
-            case 1: 
-                Debug.Log("sus");
-                customerSaying.text = susTexts[Random.Range(0,susTexts.Length)];
-                    break;
-        }
-    }
-    public void toProduction()
-    {
-        marketElements.SetActive(false);
-        
+        randomCustomerNumber = Random.Range(0,allCustomerTypes.Length);
+        customer = Instantiate(allCustomerTypes[randomCustomerNumber],movepoint.position,Quaternion.identity);
+        moveCustomerIn();
     }
     void moveCustomerIn()
     {
-        // a konumundan b konumuna git
-        
+        nextPos = movepoint1.position;
         isWay = true;
-        goingCash = true;
-        nextPos = movepoint2.transform.position;
-
     }
+    void inCash()
+    {
+        marketElements.SetActive(true);
+        profileImage.GetComponent<Image>().sprite = allCustomerProfiles[randomCustomerNumber];
+        randomTalkingNumber = Random.Range(0,3);
+        switch (randomTalkingNumber)
+        {
+            case 0:
+                customerSaying.text = sickTexts[Random.Range(0,sickTexts.Length)];
+                    break;
+            case 1:
+                customerSaying.text = sickTexts[Random.Range(0,addictTexts.Length)];
+                    break;
+            case 2:
+                customerSaying.text = sickTexts[Random.Range(0,copTexts.Length)];
+                    break;
+        }
+    }
+
+    void waitingNewCustomer(int second)
+    {
+        StartCoroutine(wait(second));
+    }
+    IEnumerator wait(int second)
+    {
+        yield return new WaitForSecondsRealtime(second);
+        spawnCustomer();
+    }
+
+
     void moveCustomerOut()
     {
-        //b konumundan a konumuna git
-        nextPos = movepoint1.transform.position;
+        nextPos = movepoint.position;
         isWay = true;
-        goingCash = false;
     }
-    void defaultBuy()
+    public void closePanelwithButton()
     {
-        //panel on
-        //button ile kapancak
-    }
-    void inspectorCustomerBuy()
-    {
-        //kimlik image on
-        //button ile kapancak
-        //sus bar ++
-        //moveCustomerOut();
-    }
-    void normalCustomerBuy()
-    {
-
-    }
-    void increaseMoney()
-    {
-        //müşteri kim
-        //ona özel tarifeyle art
-        //bura kesin değişicek aq
-        
+        moveCustomerOut();
+        marketElements.SetActive(false);
     }
 }
