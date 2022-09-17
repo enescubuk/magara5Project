@@ -12,12 +12,17 @@ public class CollectionObject : MonoBehaviour
     {
         Combiningk57s();
         Combiningb69k();
-        Debug.Log(dust);
-        Debug.Log(metilamin);
-        Debug.Log(sudafed);
-        Debug.Log(ilac);
+        
     }
 
+    private void PrintName(GameObject go)
+    {
+        if (gameObject.tag == "Dust")
+        {
+            Debug.Log("flskgjdf");
+        }
+        print(go.name);
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Dust2"))
@@ -60,6 +65,23 @@ public class CollectionObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Dust"))
+        {
+            dust += 1;
+        }
+        if (other.gameObject.CompareTag("Metilamin"))
+        {
+            metilamin += 1;
+        }
+        if (other.gameObject.CompareTag("Sudafed"))
+        {
+            sudafed += 1;
+        }
+
+        if (other.gameObject.CompareTag("Ilac"))
+        {
+            ilac += 1;
+        }
         //çöp kutusu
 
         if (other.gameObject.CompareTag("Trash"))
@@ -80,23 +102,7 @@ public class CollectionObject : MonoBehaviour
         }
         
         //ilaçlar
-        if (other.gameObject.CompareTag("Dust"))
-        {
-            dust += 1;
-        }
-        if (other.gameObject.CompareTag("Metilamin"))
-        {
-            metilamin += 1;
-        }
-        if (other.gameObject.CompareTag("Sudafed"))
-        {
-            sudafed += 1;
-        }
-
-        if (other.gameObject.CompareTag("Ilac"))
-        {
-            ilac += 1;
-        }
+        
         if (other.gameObject.CompareTag("Combining"))
         {
             if (sudafed > 0)
