@@ -28,6 +28,7 @@ public class customerController : MonoBehaviour
     public Text moneyText;
     private Slider susSlider;
     public CollectionObject CollectionObject;
+    public GameObject angry,rich;
     void Start()
     {
         spawnCustomer();
@@ -41,22 +42,30 @@ public class customerController : MonoBehaviour
     {
         if (inCash == false)
         {
+            Debug.Log(1);
+            
             if (isWay == true)
             {
-                customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime * 5);
+                customer.GetComponent<Animator>().SetBool("isWalk",true);
+                Debug.Log(2);
+                customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime * 8);
                 if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
                 {
+                        Debug.Log(3);
+                        customer.GetComponent<Animator>().SetBool("isWalk",false);
                     isWay = false;
                     if (Vector3.Distance(customer.transform.position,movepoint.position) > Vector3.Distance(customer.transform.position,movepoint1.position))
                     {
+                        Debug.Log(4);
                         //cashe yakın
                         inCash = true;
                         shopping();
                     }
                     else
                     {
+                        Debug.Log(5);
                         Destroy(customer);
-                        waitingNewCustomer(3);
+                        waitingNewCustomer(Random.Range(0,2));
                         
                     }
                 }
@@ -66,6 +75,11 @@ public class customerController : MonoBehaviour
     }
     public void selling()
     {
+        CollectionObject.dustImage.gameObject.SetActive(false);
+        CollectionObject.metilaminImage.gameObject.SetActive(false);
+        CollectionObject.sudafedImage.gameObject.SetActive(false);
+        CollectionObject.ilacImage.gameObject.SetActive(false);
+        CollectionObject.ilac2Image.gameObject.SetActive(false);
         switch (randomTalkingNumber)
             {
                 case 0 : 
@@ -74,7 +88,15 @@ public class customerController : MonoBehaviour
                     {
                         Debug.Log(1);
                         money+=15;
+                        GameObject ab = Instantiate(rich,rich.transform.position,Quaternion.identity);
+                        Destroy(ab,2f);
                     }
+                    else
+                    {
+                        GameObject ab = Instantiate(angry,angry.transform.position,Quaternion.identity);
+                        Destroy(ab,2f);
+                    }
+
                     Debug.Log(-1);
                     randomProbabilityCustomer.Add(0);
                     randomProbabilityCustomer.Add(1);
@@ -88,6 +110,13 @@ public class customerController : MonoBehaviour
                     {
                         Debug.Log(2);
                         money += 15;
+                        GameObject ab = Instantiate(rich,rich.transform.position,Quaternion.identity);
+                        Destroy(ab,2f);
+                    }
+                    else
+                    {
+                        GameObject ab = Instantiate(angry,angry.transform.position,Quaternion.identity);
+                        Destroy(ab,2f);
                     }
                     Debug.Log(-2);
                     randomProbabilityCustomer.Add(0);
@@ -102,6 +131,13 @@ public class customerController : MonoBehaviour
                     {
                         Debug.Log(3);
                         money += 50;
+                        GameObject ab = Instantiate(rich,rich.transform.position,Quaternion.identity);
+                        Destroy(ab,5f);
+                    }
+                    else
+                    {
+                        GameObject ab = Instantiate(angry,angry.transform.position,Quaternion.identity);
+                        Destroy(ab,4f);
                     }
                     Debug.Log(-3);
                     randomProbabilityCustomer.Remove(0);
@@ -116,6 +152,13 @@ public class customerController : MonoBehaviour
                     {
                         Debug.Log(4);
                         money += 15;
+                        GameObject ab = Instantiate(rich,rich.transform.position,Quaternion.identity);
+                        Destroy(ab,2f);
+                    }
+                    else
+                    {
+                        GameObject ab = Instantiate(angry,angry.transform.position,Quaternion.identity);
+                        Destroy(ab,2f);
                     }
                     Debug.Log(-4);
                     randomProbabilityCustomer.Remove(0);
@@ -182,6 +225,7 @@ public class customerController : MonoBehaviour
     void moveCustomerOut()
     {
         nextPos = movepoint.position;
+        customer.transform.eulerAngles = new Vector3(0,180,0);
         isWay = true;
     }
 }

@@ -295,9 +295,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0.56
+  m_MaxValue: 100
+  m_WholeNumbers: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -590,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a28b35046e62f324ca57ff45e4d8fee9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.877737
+      value: -12.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a28b35046e62f324ca57ff45e4d8fee9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -632,6 +632,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: a28b35046e62f324ca57ff45e4d8fee9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64cebe09ef77cf94ca3d782099921c47, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a28b35046e62f324ca57ff45e4d8fee9, type: 3}
 --- !u!1 &143554538
@@ -966,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41b14a458fe87c4fa7816608bc8274f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ilacGenre: 0
   dustTable: {fileID: 1768199199}
   metiTable: {fileID: 1814377251}
   sudaTable: {fileID: 2111809034}
@@ -984,6 +989,12 @@ MonoBehaviour:
   sudaBall: {fileID: 456071714}
   ilacBall: {fileID: 1828429815}
   ilac2Ball: {fileID: 554037176}
+  k57sBall: {fileID: 0}
+  b69kBall: {fileID: 0}
+  nButton: {fileID: 0}
+  kbutton: {fileID: 0}
+  lbutton: {fileID: 0}
+  bbutton: {fileID: 0}
   impact: {fileID: 8300000, guid: 11018806692e828488a4a00e493937a6, type: 3}
   dustImage: {fileID: 1801780076}
   metilaminImage: {fileID: 1085291457}
@@ -1219,7 +1230,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.56
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -3046,8 +3057,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838666539}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000029273245, z: 0.000000018091859, w: 0.8506509}
-  m_LocalPosition: {x: -80.36, y: 43.18438, z: -40.87774}
+  m_LocalRotation: {x: 0.52573115, y: -0.00000000731831, z: 0.0000000045229642, w: 0.85065085}
+  m_LocalPosition: {x: -80.36, y: 43.18438, z: -37.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2133683358}
@@ -3413,8 +3424,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000029273245, z: 0.000000018091859, w: 0.8506509}
-  m_LocalPosition: {x: -80.36, y: 43.18438, z: -40.87774}
+  m_LocalRotation: {x: 0.52573115, y: -0.00000000731831, z: 0.0000000045229642, w: 0.85065085}
+  m_LocalPosition: {x: -80.36, y: 43.18438, z: -37.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3646,7 +3657,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015417668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3655,8 +3666,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.4834, y: 8.088898}
-  m_SizeDelta: {x: -110.9669, y: -63.146}
+  m_AnchoredPosition: {x: 41.19323, y: 8.088745}
+  m_SizeDelta: {x: -82.3867, y: -63.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1015417670
 MonoBehaviour:
@@ -3671,7 +3682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47450984, g: 0.7686275, b: 0.8313726, a: 1}
+  m_Color: {r: 0.5562478, g: 0.8853933, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3679,8 +3690,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c4d668d3a0629ea428b8d7684fe680a1, type: 3}
-    m_FontSize: 41
+    m_Font: {fileID: 12800000, guid: 997a43b767814dd0a7642ec9b78cba41, type: 3}
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -5136,6 +5147,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
+      propertyPath: rich
+      value: 
+      objectReference: {fileID: 5151520704290374129, guid: 06d527c35979e35468eab0af710d0271, type: 3}
+    - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
+      propertyPath: angry
+      value: 
+      objectReference: {fileID: 4879570697603216482, guid: f8fe059b84e160442abe34a65b386eb4, type: 3}
+    - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
       propertyPath: customer
       value: 
       objectReference: {fileID: 0}
@@ -5171,6 +5190,10 @@ PrefabInstance:
       propertyPath: marketElements
       value: 
       objectReference: {fileID: 1792080285}
+    - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
+      propertyPath: CollectionObject
+      value: 
+      objectReference: {fileID: 1187078007932032609}
     - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
       propertyPath: allCustomers.Array.data[0]
       value: 
@@ -5971,6 +5994,10 @@ PrefabInstance:
       value: -3.38
       objectReference: {fileID: 0}
     - target: {fileID: 4045162807890780593, guid: 0f02638f127af894e9fbf35e818d1278, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045162807890780593, guid: 0f02638f127af894e9fbf35e818d1278, type: 3}
       propertyPath: m_LocalPosition.z
       value: -26.12
       objectReference: {fileID: 0}
@@ -6025,6 +6052,10 @@ PrefabInstance:
     - target: {fileID: 4045162808800623765, guid: 0f02638f127af894e9fbf35e818d1278, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4045162808800623765, guid: 0f02638f127af894e9fbf35e818d1278, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.95
       objectReference: {fileID: 0}
     - target: {fileID: 4045162808800623765, guid: 0f02638f127af894e9fbf35e818d1278, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7458,7 +7489,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 64cebe09ef77cf94ca3d782099921c47, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7500,6 +7531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41b14a458fe87c4fa7816608bc8274f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ilacGenre: 0
   dustTable: {fileID: 1768199199}
   metiTable: {fileID: 1814377251}
   sudaTable: {fileID: 2111809034}
@@ -7518,6 +7550,12 @@ MonoBehaviour:
   sudaBall: {fileID: 456071714}
   ilacBall: {fileID: 1828429815}
   ilac2Ball: {fileID: 554037176}
+  k57sBall: {fileID: 0}
+  b69kBall: {fileID: 0}
+  nButton: {fileID: 0}
+  kbutton: {fileID: 0}
+  lbutton: {fileID: 0}
+  bbutton: {fileID: 0}
   impact: {fileID: 8300000, guid: 11018806692e828488a4a00e493937a6, type: 3}
   dustImage: {fileID: 1801780076}
   metilaminImage: {fileID: 1085291457}
@@ -7538,7 +7576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adebeb1a423e01947803ffa970eee5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 50
   turnSpeed: 360
 --- !u!95 &1187078007932032611
 Animator:
@@ -11437,6 +11475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   marketElements: {fileID: 1792080285}
   customerController: {fileID: 2011050168}
+  canSell: 0
 --- !u!65 &8009987136259788982
 BoxCollider:
   m_ObjectHideFlags: 0
