@@ -43,16 +43,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d43db085e66a454ba142fa21ac930ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customer: {fileID: 0}
+  movepoint: {fileID: 0}
   movepoint1: {fileID: 0}
-  movepoint2: {fileID: 0}
-  customerSaying: {fileID: 0}
+  allCustomerTypes:
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  - {fileID: 2354813207659652404, guid: 088873c4674d02c4982e9205546845bb, type: 3}
+  allCustomerProfiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  customer: {fileID: 0}
   marketElements: {fileID: 0}
-  allCustomers:
-  - {fileID: 0}
-  - {fileID: 0}
-  normalTexts:
-  - "a\u011Fr\u0131 kesici"
-  - "mide bulant\u0131s\u0131"
-  susTexts:
-  - "kuzen hap var m\u0131"
+  profileImage: {fileID: 0}
+  customerSaying: {fileID: 0}
+  sickTexts:
+  - "Merhaba karn\u0131m bug\xFCn felaket a\u011Fr\u0131yor. A\u011Fr\u0131 kesici
+    rica edebilir miyim? "
+  - "Bana ordan a\u011Fr\u0131 kesici."
+  - "Merhaba a\u011Fr\u0131 kesici alabilir miyim."
+  - "Bug\xFCn g\xFCnlerden a\u011Fr\u0131 kesici."
+  - "S\u0131rt\u0131m \xE7ok a\u011Fr\u0131yor, elinizde a\u011Fr\u0131 kesici var
+    m\u0131d\u0131r? "
+  - "A\u011Fr\u0131 da\u011F\u0131n\u0131n ete\u011Findeeee, pardon ba\u015F\u0131m
+    a\u011Fr\u0131yor da elinizde a\u011Fr\u0131 kesici var m\u0131d\u0131r? "
+  - "Kliman\u0131n alt\u0131nda kalm\u0131\u015F\u0131m, a\u011Fr\u0131 kesiciniz
+    var m\u0131d\u0131r? "
+  - "Bir kutu ilac\u0131m, a\u011Fr\u0131s\u0131z ba\u015F\u0131m."
+  - "Ma\u011Fara \xE7ok so\u011Fuktu da, a\u011Fr\u0131 kesiciniz var m\u0131?"
+  - "Migrenim azd\u0131 yine, elinizde i\u015Fe yarar bir \u015Feyler var m\u0131d\u0131r?"
+  - "Hey yo men, i need some a\u011Fr\u0131 kesici please. "
+  feverTexts:
+  - "D\xFCn gece ate\u015Ften uyuyamad\u0131m ate\u015F d\xFC\u015F\xFCr\xFCc\xFC
+    alabilir miyim?"
+  - "Ate\u015F d\xFC\u015F\xFCr\xFCc\xFC ver."
+  - "Ate\u015Fimi d\xFC\u015F\xFCr\xFCr m\xFCs\xFCn? "
+  - "Hay\u0131r m\u0131, \u015Fer mi, bilmem ama Ate\u015Fteyim ben ate\u015Fte."
+  - "So\u011Fuk su i\xE7mi\u015Ftim d\xFCn, ate\u015F d\xFC\u015F\xFCr\xFCc\xFC var
+    m\u0131d\u0131r acaba? "
+  - "Pardon, ate\u015F d\xFC\u015F\xFCr\xFCc\xFCn\xFCz var m\u0131d\u0131r?"
+  - "Yan\u0131yorum, ate\u015Fimi d\xFC\u015F\xFCr\xFCr m\xFCs\xFCn\xFCz? "
+  - "K\u0131z\u0131m ate\u015Fler i\xE7erisinde, ate\u015F d\xFC\u015F\xFCr\xFCc\xFC
+    alabilir miyim?"
+  - "Acilen ate\u015F d\xFC\u015F\xFCr\xFCc\xFC bulmam gerek. "
+  - "K\u0131\u015F\u0131n ate\u015Fim \xE7ok \xE7\u0131k\u0131yor da, ate\u015F d\xFC\u015F\xFCr\xFCc\xFC
+    verebilir misin?"
+  addictTexts:
+  - "Kap\u0131n\u0131n \xF6n\xFCndeki BAYBURT plakal\u0131 arac\u0131 sat\u0131n
+    almak istiyorum "
+  - "69 m\xFC\u015Fteri beklemek zorunda kald\u0131m."
+  - 'My name is gustavo but you can call me gus. '
+  - 'Say My Name! '
+  - Sus, Amogus.
+  - "Altm\u0131\u015F dokuzuncu g\xFCn\xFCn \u015Fafa\u011F\u0131nda do\u011Fuya
+    bakt\u0131n\u0131z m\u0131 hi\xE7?"
+  - 'Jesse, Where is the pills, jesse. '
+  - "Romay\u0131 Bayburt'lular yakm\u0131\u015F diyorlar. do\u011Fru mu?"
+  - "Ya siz ge\xE7en bana bir \u015Feyler vermi\u015Ftiniz, neydi ad\u0131? Hah.
+    B. "
+  - "Kara pancar'\u0131n nerede me\u015Fhur oldu\u011Funu bilir misiniz? "
+  - "Ya beni Bayburtlu bi arkada\u015F yollad\u0131 da. "
+  - "Sen do\u011Fru, ben baya yanl\u0131\u015F. Bayburtluyla bayan yanl\u0131\u015F."
+  copTexts:
+  - "U\xE7uran bir \u015Feyler var m\u0131?"
+  - "Bana acil mal laz\u0131m. "
+  - "Ate\u015F d\xFC\u015F\xFCr\xFCc\xFC verir misin? "
+  - "A\u011Fr\u0131 kesici verir misin? "
+  - "57 m\xFC\u015Fteri beklemek zorunda kald\u0131m. "
+  - "Bilader bana en iyisinden bi a\u011Fr\u0131 kesici. "
+  - 'Bip Bop. Bop Bip? '
+  - "Ya siz ge\xE7en bana bir \u015Feyler vermi\u015Ftiniz, neydi ad\u0131? "
+  - "Arkada\u015F\u0131m ge\xE7enlerde sizden A alm\u0131\u015F da, ben de alabilir
+    miyim? "
+  - "Beni bomba gibi yapacak bir ila\xE7 var m\u0131d\u0131r sizde? "
+  - "Kara \xDCz\xFCm nerede me\u015Fhurdur? "
+  - "Arkada\u015Flar\u0131m sizi \xE7ok \xF6nerdi, acaba beni iyile\u015Ftirebilir
+    misiniz? "
+  - "Pardon yan kahveden yollad\u0131lar, sizde \xE7ay var m\u0131d\u0131r? "
+  - "Karag\xFCmr\xFCk yan\u0131yor, polis beni ar\u0131yor. "
+  - "Bursa kuma\u015F\u0131 var m\u0131d\u0131r sizde?"
+  moneyText: {fileID: 0}
