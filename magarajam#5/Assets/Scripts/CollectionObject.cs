@@ -15,6 +15,11 @@ public class CollectionObject : MonoBehaviour
     public GameObject dustBall, metiBall, sudaBall, ilacBall, ilac2Ball;
     [Header("TARİF KİTABI")]
     public static bool recipeControl;
+    
+    public AudioClip impact;
+    AudioSource audioSource;
+
+    private Animator anim;
 
     
 
@@ -24,8 +29,21 @@ public class CollectionObject : MonoBehaviour
     public Image sudafedImage;
     public Image ilacImage;
     public Image ilac2Image;
-    
+    public Image k57sImage;
+    public Image b69KImage;
 
+    private void Start()
+    {
+        audioSource = GameObject.Find("TakeSound").GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+    }
+    void PowerSound()
+    {
+       
+        
+        audioSource.PlayOneShot(impact, 1f);
+
+    }
     void Update()
     {
         Combiningk57s();
@@ -41,7 +59,11 @@ public class CollectionObject : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.E))
                 {
+                    //Take Sound
+                    PowerSound();
+                    anim.SetTrigger("Pick");
                     dust += 1;
+                    
                     if (handControl)
                     {
                         TMPControl.dus -= 1;
@@ -62,6 +84,9 @@ public class CollectionObject : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.E))
                 {
+                    //Take Sound
+                    PowerSound();
+                    anim.SetTrigger("Pick");
                     metilamin += 1;
                     if (handControl)
                     {
@@ -84,6 +109,9 @@ public class CollectionObject : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.E))
                 {
+                    //Take Sound
+                    PowerSound();
+                    anim.SetTrigger("Pick");
                     sudafed += 1;
                     if (handControl)
                     {
@@ -106,6 +134,9 @@ public class CollectionObject : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.E))
                 {
+                    //Take Sound
+                    PowerSound();
+                    anim.SetTrigger("Pick");
                     ilac += 1;
                     if (handControl)
                     {
@@ -129,6 +160,9 @@ public class CollectionObject : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.E))
                 {
+                    //Take Sound
+                    PowerSound();
+                    anim.SetTrigger("Pick");
                     ilac2 += 1;
                     if (handControl)
                     {
@@ -150,7 +184,6 @@ public class CollectionObject : MonoBehaviour
              
             if (Input.GetKey(KeyCode.R))
             {
-                
                 dust += 1;
                 dustTable.SetActive(false);
             }
@@ -255,6 +288,16 @@ public class CollectionObject : MonoBehaviour
                 ilac2 -= 1;
                 handControl = true;
                 ilacImage.gameObject.SetActive(false); 
+            }else if (B69k >=1)
+            {
+                B69k -= 1;
+                handControl = true;
+                b69KImage.gameObject.SetActive(false);
+            }else if (K57s >=1)
+            {
+                K57s -= 1;
+                handControl = true;
+                k57sImage.gameObject.SetActive(false);
             }
         }
         //ilaçlar
@@ -269,6 +312,7 @@ public class CollectionObject : MonoBehaviour
                     handControl = true;
                 }
                 sudaTable.SetActive(true);
+                anim.SetTrigger("Pick");
                 sudaCont = true;
                 sudafed = 0;
                 sudaBall.gameObject.SetActive(true);
@@ -282,7 +326,7 @@ public class CollectionObject : MonoBehaviour
                     handControl = true;
                 }
                 metiTable.SetActive(true);
-                
+                anim.SetTrigger("Pick");
                 metiCont = true;
                 metilamin = 0;
                 metiBall.gameObject.SetActive(true);
@@ -296,6 +340,7 @@ public class CollectionObject : MonoBehaviour
                     handControl = true;
                 }
                 dustTable.SetActive(true);
+                anim.SetTrigger("Pick");
                 dustCont = true;
                 dust = 0;
                 dustBall.gameObject.SetActive(true);
@@ -309,9 +354,10 @@ public class CollectionObject : MonoBehaviour
                     handControl = true;
                 }
                 ilacTable.SetActive(true);
+                anim.SetTrigger("Pick");
                 ilacCont = true;
                 ilac = 0;
-                ilacBall.gameObject.SetActive(true);
+                ilac2Ball.gameObject.SetActive(true);
                 ilac2Image.gameObject.SetActive(false);
                 
             }else if (ilac2 > 0)
@@ -322,9 +368,10 @@ public class CollectionObject : MonoBehaviour
                     handControl = true;
                 }
                 ilacTable2.SetActive(true);
+                anim.SetTrigger("Pick");
                 ilacCont2 = true;
                 ilac2 = 0;
-                ilac2Ball.gameObject.SetActive(true);
+                ilacBall.gameObject.SetActive(true);
                 ilacImage.gameObject.SetActive(false); 
                 
             }
@@ -334,33 +381,38 @@ public class CollectionObject : MonoBehaviour
 
     void Combiningk57s()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (dustCont && sudaCont && metiCont)
         {
-            if (dustCont && sudaCont && metiCont)
+            if (Input.GetKey(KeyCode.E))
             {
                 k57sTable.SetActive(true);
                 sudaTable.SetActive(false);
                 metiTable.SetActive(false);
                 dustTable.SetActive(false);
+                
                 dustBall.gameObject.SetActive(false);
                 ilacBall.gameObject.SetActive(false);
                 metiBall.gameObject.SetActive(false);
                 sudaBall.gameObject.SetActive(false);
                 ilac2Ball.gameObject.SetActive(false);
+                
+                
+            }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                k57sImage.gameObject.SetActive(true);
+                k57sTable.SetActive(false);
+                K57s += 1;
             }
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            k57sTable.SetActive(false);
-            K57s += 1;
-        }
+        
         
     }
     void Combiningb69k()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (ilacCont2 && dustCont)
         {
-            if (ilacCont && dustCont)
+            if (Input.GetKey(KeyCode.H))
             {
                 b69kTable.SetActive(true);
                 ilacTable.SetActive(false);
@@ -370,13 +422,16 @@ public class CollectionObject : MonoBehaviour
                 metiBall.gameObject.SetActive(false);
                 sudaBall.gameObject.SetActive(false);
                 ilac2Ball.gameObject.SetActive(false);
+                
+            }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                b69KImage.gameObject.SetActive(true);
+                b69kTable.SetActive(false);
+                B69k += 1;
             }
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            b69kTable.SetActive(false);
-            B69k += 1;
-        }
+       
     }
     
     
