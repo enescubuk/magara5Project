@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -80,5 +81,18 @@ public class UIManager : MonoBehaviour
             Screen.fullScreen = false;
         }
        
+    }
+
+    public void PlayButton()
+    {
+        SceneManager.LoadScene("Game");
+
+
+    }
+
+    public void ExitButton()
+    {
+        Application.Quit();
+
     }
 }
