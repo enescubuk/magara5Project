@@ -11,7 +11,7 @@ public class customerController : MonoBehaviour
     public Sprite[] allCustomerProfiles;
     public List<int> randomProbabilityCustomer = new List<int>();
     private Vector3 nextPos;
-    public GameObject customer;
+    private GameObject customer;
     private bool isWay;
     public GameObject marketElements;
     public GameObject profileImage;
@@ -27,6 +27,7 @@ public class customerController : MonoBehaviour
     private int money = 100;
     public Text moneyText;
     private Slider susSlider;
+    public CollectionObject CollectionObject;
     void Start()
     {
         spawnCustomer();
@@ -41,7 +42,36 @@ public class customerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            switch (randomTalkingNumber)
+            
+        }
+        if (inCash == false)
+        {
+            if (isWay == true)
+            {
+                customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime * 5);
+                if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
+                {
+                    isWay = false;
+                    if (Vector3.Distance(customer.transform.position,movepoint.position) > Vector3.Distance(customer.transform.position,movepoint1.position))
+                    {
+                        //cashe yakın
+                        inCash = true;
+                        shopping();
+                    }
+                    else
+                    {
+                        Destroy(customer);
+                        waitingNewCustomer(3);
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+    void selling()
+    {
+        switch (randomTalkingNumber)
             {
                 case 0 : 
                 //hasta kişi
@@ -87,31 +117,6 @@ public class customerController : MonoBehaviour
             moneyText.text = money+"$";
             moveCustomerOut();
             inCash = false;
-        }
-        if (inCash == false)
-        {
-            if (isWay == true)
-            {
-                customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime * 5);
-                if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
-                {
-                    isWay = false;
-                    if (Vector3.Distance(customer.transform.position,movepoint.position) > Vector3.Distance(customer.transform.position,movepoint1.position))
-                    {
-                        //cashe yakın
-                        inCash = true;
-                        shopping();
-                    }
-                    else
-                    {
-                        Destroy(customer);
-                        waitingNewCustomer(3);
-                        
-                    }
-                }
-            }
-        }
-        
     }
     void spawnCustomer()
     {

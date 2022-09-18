@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class CollectionObject : MonoBehaviour
 {
+    public int ilacGenre;
     [Header("İLAÇLAR")]
     private int dust, metilamin, sudafed, B69k, K57s,ilac,ilac2;
     public GameObject dustTable, metiTable, sudaTable,k57sTable,b69kTable,ilacTable,ilacTable2;
@@ -46,6 +47,7 @@ public class CollectionObject : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(ilacGenre);
         Combiningk57s();
         Combiningb69k();
     }
@@ -149,6 +151,7 @@ public class CollectionObject : MonoBehaviour
                     sudafedImage.gameObject.SetActive(false);
                     ilacImage.gameObject.SetActive(false);
                     ilac2Image.gameObject.SetActive(true);
+                    ilacGenre = 1;
                 }
             }
 
@@ -174,6 +177,7 @@ public class CollectionObject : MonoBehaviour
                     metilaminImage.gameObject.SetActive(false);
                     sudafedImage.gameObject.SetActive(false);
                     ilacImage.gameObject.SetActive(true);
+                    ilacGenre = 0;
                     ilac2Image.gameObject.SetActive(false);
                 }
             }
@@ -401,6 +405,7 @@ public class CollectionObject : MonoBehaviour
             if (Input.GetKey(KeyCode.Q))
             {
                 k57sImage.gameObject.SetActive(true);
+                ilacGenre = 3;
                 k57sTable.SetActive(false);
                 K57s += 1;
             }
@@ -427,6 +432,7 @@ public class CollectionObject : MonoBehaviour
             if (Input.GetKey(KeyCode.Q))
             {
                 b69KImage.gameObject.SetActive(true);
+                ilacGenre = 2;
                 b69kTable.SetActive(false);
                 B69k += 1;
             }
