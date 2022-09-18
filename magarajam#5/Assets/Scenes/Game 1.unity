@@ -5147,6 +5147,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
+      propertyPath: rich
+      value: 
+      objectReference: {fileID: 5151520704290374129, guid: 06d527c35979e35468eab0af710d0271, type: 3}
+    - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
+      propertyPath: angry
+      value: 
+      objectReference: {fileID: 4879570697603216482, guid: f8fe059b84e160442abe34a65b386eb4, type: 3}
+    - target: {fileID: 5349353794779043265, guid: 2dbf05efe8cd9a14290a4694a811dac8, type: 3}
       propertyPath: customer
       value: 
       objectReference: {fileID: 0}
