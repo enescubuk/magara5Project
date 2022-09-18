@@ -41,22 +41,30 @@ public class customerController : MonoBehaviour
     {
         if (inCash == false)
         {
+            Debug.Log(1);
+            
             if (isWay == true)
             {
+                customer.GetComponent<Animator>().SetBool("isWalk",true);
+                Debug.Log(2);
                 customer.transform.position = Vector3.MoveTowards(customer.transform.position,nextPos,Time.deltaTime * 5);
                 if (Vector3.Distance(customer.transform.position,nextPos) <= 0.1f)
                 {
+                        Debug.Log(3);
+                        customer.GetComponent<Animator>().SetBool("isWalk",false);
                     isWay = false;
                     if (Vector3.Distance(customer.transform.position,movepoint.position) > Vector3.Distance(customer.transform.position,movepoint1.position))
                     {
+                        Debug.Log(4);
                         //cashe yakın
                         inCash = true;
                         shopping();
                     }
                     else
                     {
+                        Debug.Log(5);
                         Destroy(customer);
-                        waitingNewCustomer(3);
+                        waitingNewCustomer(Random.Range(0,2));
                         
                     }
                 }
@@ -66,6 +74,11 @@ public class customerController : MonoBehaviour
     }
     public void selling()
     {
+        CollectionObject.dustImage.gameObject.SetActive(false);
+        CollectionObject.metilaminImage.gameObject.SetActive(false);
+        CollectionObject.sudafedImage.gameObject.SetActive(false);
+        CollectionObject.ilacImage.gameObject.SetActive(false);
+        CollectionObject.ilac2Image.gameObject.SetActive(false);
         switch (randomTalkingNumber)
             {
                 case 0 : 
