@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
+    
+    [SerializeField] GameObject Ui;
+    [SerializeField] GameObject menuButton;
     [SerializeField] private float fadeTime = 1;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] RectTransform rectTransform;
     [SerializeField] List<GameObject> button = new List<GameObject>();
+
+    int a;
 
     private void Start()
     {
@@ -72,12 +76,16 @@ public class UIManager : MonoBehaviour
 
     public void FullscreenButton()
     {
+        
         if (Screen.fullScreen == false)
         {
+            
             Screen.fullScreen = true;
+
         }
         else
         {
+            
             Screen.fullScreen = false;
         }
        
@@ -85,14 +93,30 @@ public class UIManager : MonoBehaviour
 
     public void PlayButton()
     {
-        SceneManager.LoadScene("Game");
-
-
+        if (SceneManager.GetActiveScene().name.Contains("Game"))
+        {
+            menuButton.GetComponent<CanvasGroup>().alpha = 1f;
+            Ui.GetComponent<CanvasGroup>().alpha = 0f;
+            canvasGroup.alpha = 0f;
+        }
+        else
+        {
+            SceneManager.LoadScene("Game");
+        }
+        
     }
 
     public void ExitButton()
     {
         Application.Quit();
 
+    }
+
+    public void MenuButton()
+    {
+        menuButton.GetComponent<CanvasGroup>().alpha = 0;
+        Ui.GetComponent<CanvasGroup>().alpha = 1;
+        StartCoroutine("Buttons");
+        
     }
 }
