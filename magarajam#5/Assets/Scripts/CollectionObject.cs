@@ -13,7 +13,8 @@ public class CollectionObject : MonoBehaviour
     public GameObject dustTable, metiTable, sudaTable,k57sTable,b69kTable,ilacTable,ilacTable2;
     private bool dustCont, metiCont, sudaCont, ilacCont,ilacCont2, handControl = true;
     public GameObject go1, go2, go3, go4, go5,go6;
-    public GameObject dustBall, metiBall, sudaBall, ilacBall, ilac2Ball;
+    public GameObject dustBall, metiBall, sudaBall, ilacBall, ilac2Ball,k57sBall,b69kBall,nButton,kbutton,lbutton,bbutton;
+    private int a, b;
     [Header("TARİF KİTABI")]
     public static bool recipeControl;
     
@@ -35,6 +36,8 @@ public class CollectionObject : MonoBehaviour
 
     private void Start()
     {
+        a = 0;
+        b = 0;
         audioSource = GameObject.Find("TakeSound").GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
@@ -189,7 +192,9 @@ public class CollectionObject : MonoBehaviour
             if (Input.GetKey(KeyCode.R))
             {
                 dust += 1;
-                dustTable.SetActive(false);
+                anim.SetTrigger("Pick");
+                dustBall.gameObject.SetActive(false);
+                dustImage.gameObject.SetActive(true);
             }
             
         }
@@ -197,8 +202,11 @@ public class CollectionObject : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.R))
             {
+                
                 metilamin += 1;
-                metiTable.SetActive(false);  
+                anim.SetTrigger("Pick");
+                metiBall.gameObject.SetActive(false);
+                metilaminImage.gameObject.SetActive(true);
             }
             
         }
@@ -207,15 +215,29 @@ public class CollectionObject : MonoBehaviour
             if (Input.GetKey(KeyCode.R))
             {
                 sudafed += 1;
-                sudaTable.SetActive(false);
+                anim.SetTrigger("Pick");
+                sudaBall.gameObject.SetActive(false);
+                sudafedImage.gameObject.SetActive(true);
             }
         }
         if (other.gameObject.CompareTag("Ilac2"))
         {
             if (Input.GetKey(KeyCode.R))
             {
+                ilac2 += 1;
+                anim.SetTrigger("Pick");
+                ilacBall.gameObject.SetActive(false);
+                ilacImage.gameObject.SetActive(true);
+            }
+        }
+        if (other.gameObject.CompareTag("ilac4"))
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
                 ilac += 1;
-                ilacTable.SetActive(false);
+                anim.SetTrigger("Pick");
+                ilac2Ball.gameObject.SetActive(false);
+                ilac2Image.gameObject.SetActive(true);
             }
         }
         if (other.gameObject.CompareTag("Recipe"))
@@ -259,7 +281,7 @@ public class CollectionObject : MonoBehaviour
              go6.SetActive(false);
          }
     }
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -269,37 +291,38 @@ public class CollectionObject : MonoBehaviour
         {
             if (dust >= 1)
             {
-                dust -= 1;
+                dust = 0;
                 handControl = true;
                 dustImage.gameObject.SetActive(false);
+                
             }else if (metilamin >= 1)
             {
-                metilamin -= 1;
+                metilamin = 0;
                 handControl = true;
                 metilaminImage.gameObject.SetActive(false);
             }else if (sudafed >= 1)
             {
-                sudafed -= 1;
+                sudafed = 0;
                 handControl = true;
                 sudafedImage.gameObject.SetActive(false);
             }else if (ilac >= 1)
             {
-                ilac -= 1;
+                ilac = 0;
                 handControl = true;
                 ilac2Image.gameObject.SetActive(false);
             }else if (ilac2 >= 1)
             {
-                ilac2 -= 1;
+                ilac2  = 0;;
                 handControl = true;
                 ilacImage.gameObject.SetActive(false); 
             }else if (B69k >=1)
             {
-                B69k -= 1;
+                B69k = 0;
                 handControl = true;
                 b69KImage.gameObject.SetActive(false);
             }else if (K57s >=1)
             {
-                K57s -= 1;
+                K57s = 0;
                 handControl = true;
                 k57sImage.gameObject.SetActive(false);
             }
@@ -387,9 +410,14 @@ public class CollectionObject : MonoBehaviour
     {
         if (dustCont && sudaCont && metiCont)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (a<1)
             {
-                k57sTable.SetActive(true);
+                kbutton.gameObject.SetActive(true);
+                a += 1;
+            }
+            if (Input.GetKey(KeyCode.K))
+            {
+                k57sBall.SetActive(true);
                 sudaTable.SetActive(false);
                 metiTable.SetActive(false);
                 dustTable.SetActive(false);
@@ -399,16 +427,20 @@ public class CollectionObject : MonoBehaviour
                 metiBall.gameObject.SetActive(false);
                 sudaBall.gameObject.SetActive(false);
                 ilac2Ball.gameObject.SetActive(false);
-                
+                lbutton.gameObject.SetActive(true);
+                kbutton.gameObject.SetActive(false);
                 
             }
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.L))
             {
+                k57sBall.SetActive(false);
                 k57sImage.gameObject.SetActive(true);
                 ilacGenre = 3;
                 k57sTable.SetActive(false);
                 K57s += 1;
+                lbutton.gameObject.SetActive(false);
             }
+            
         }
         
         
@@ -417,7 +449,12 @@ public class CollectionObject : MonoBehaviour
     {
         if (ilacCont2 && dustCont)
         {
-            if (Input.GetKey(KeyCode.H))
+            if (b<1)
+            {
+                bbutton.gameObject.SetActive(true);
+                b += 1;
+            }
+            if (Input.GetKey(KeyCode.B))
             {
                 b69kTable.SetActive(true);
                 ilacTable.SetActive(false);
@@ -427,15 +464,21 @@ public class CollectionObject : MonoBehaviour
                 metiBall.gameObject.SetActive(false);
                 sudaBall.gameObject.SetActive(false);
                 ilac2Ball.gameObject.SetActive(false);
+                nButton.gameObject.SetActive(true);
+                bbutton.gameObject.SetActive(false);
+                b69kBall.gameObject.SetActive(true);
                 
             }
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.N))
             {
+                nButton.gameObject.SetActive(false);
                 b69KImage.gameObject.SetActive(true);
                 ilacGenre = 2;
                 b69kTable.SetActive(false);
                 B69k += 1;
+                b69kBall.gameObject.SetActive(false);
             }
+            
         }
        
     }

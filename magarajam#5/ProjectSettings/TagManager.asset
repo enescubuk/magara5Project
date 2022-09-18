@@ -16,6 +16,7 @@ TagManager:
   - Trash
   - Ilac3
   - Recipe
+  - ilac4
   layers:
   - Default
   - TransparentFX
