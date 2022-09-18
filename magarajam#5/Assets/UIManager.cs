@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    
+    [SerializeField] GameObject BG;
+    [SerializeField] GameObject BG2;
     [SerializeField] GameObject Ui;
     [SerializeField] GameObject menuButton;
     [SerializeField] private float fadeTime = 1;
@@ -19,19 +20,33 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        
+        if (SceneManager.GetActiveScene().name.Contains("Game"))
+        {
+            menuButton.SetActive(true);
+        }
+        if (SceneManager.GetActiveScene().name.Contains("Menu"))
+        {
+            menuButton.SetActive(false);
+        }
+        menuButton.SetActive(false);
+        //BG.GetComponent<CanvasGroup>().alpha = 1;
+        BG2.GetComponent<CanvasGroup>().alpha = 0;
         StartCoroutine("Buttons");
     }
     public void PanelFadeIn()
     {
-        
-
+        BG2.GetComponent<CanvasGroup>().alpha = 1;
+        //BG2.transform.DOScale(1f, 0.2f).SetEase(Ease.OutFlash);
+        //BG.GetComponent<CanvasGroup>().alpha = 0;
+        //
         canvasGroup.alpha = 0;
 
         rectTransform.transform.localPosition = new Vector3(0, -1000, 0);
 
         rectTransform.DOAnchorPos(new Vector2(0, 70), fadeTime, false).SetEase(Ease.OutElastic);
-        
+
+       
+
         canvasGroup.DOFade(1, fadeTime);
 
         StartCoroutine("ButtonsOut");
@@ -40,8 +55,13 @@ public class UIManager : MonoBehaviour
 
     public void PanelFadeOut()
     {
+       
+       // BG2.transform.DOScale(1f, 0.2f).SetEase(Ease.InFlash);
+        // BG.GetComponent<CanvasGroup>().alpha = 1;
+       // BG2.GetComponent<CanvasGroup>().alpha = 0;
         canvasGroup.alpha = 1f;
         rectTransform.transform.localPosition = new Vector3(0, 0, 0);
+        
         rectTransform.DOAnchorPos(new Vector2(0, -1000f), fadeTime, false).SetEase(Ease.InOutQuint);
         canvasGroup.DOFade(0, fadeTime);
         StartCoroutine("Buttons");
@@ -58,7 +78,9 @@ public class UIManager : MonoBehaviour
         }
         foreach (var item in button)
         {
-            item.transform.DOScale(1f, fadeTime).SetEase(Ease.OutBounce);
+            item.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
+            BG.transform.DOScale(1f, 0.5f).SetEase(Ease.OutFlash);
+            BG2.transform.DOScale(0f, 0.1f).SetEase(Ease.InFlash);
             yield return new WaitForSeconds(0.25f);
         }
 
@@ -68,9 +90,11 @@ public class UIManager : MonoBehaviour
         foreach (var item in button)
         {
             item.transform.DOScale(0f, 0.5f).SetEase(Ease.InBounce);
+            BG.transform.DOScale(0f, 0.1f).SetEase(Ease.InFlash);
+            BG2.transform.DOScale(1f, 0.5f).SetEase(Ease.OutFlash);
+
             yield return new WaitForSeconds(0.2f);
         }
-
 
     }
 
@@ -98,6 +122,8 @@ public class UIManager : MonoBehaviour
             menuButton.GetComponent<CanvasGroup>().alpha = 1f;
             Ui.GetComponent<CanvasGroup>().alpha = 0f;
             canvasGroup.alpha = 0f;
+            menuButton.SetActive(true);
+            
         }
         else
         {
@@ -114,8 +140,10 @@ public class UIManager : MonoBehaviour
 
     public void MenuButton()
     {
+        
         menuButton.GetComponent<CanvasGroup>().alpha = 0;
         Ui.GetComponent<CanvasGroup>().alpha = 1;
+        menuButton.SetActive(false);
         StartCoroutine("Buttons");
         
     }
