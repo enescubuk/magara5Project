@@ -39,11 +39,6 @@ public class customerController : MonoBehaviour
     }
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            
-        }
         if (inCash == false)
         {
             if (isWay == true)
@@ -69,14 +64,18 @@ public class customerController : MonoBehaviour
         }
         
     }
-    void selling()
+    public void selling()
     {
         switch (randomTalkingNumber)
             {
                 case 0 : 
                 //hasta kişi
-                    money+=15;
-                    Debug.Log("01 arttı 23 azladı");
+                    if (CollectionObject.ilacGenre == 0 || CollectionObject.ilacGenre == 2)
+                    {
+                        Debug.Log(1);
+                        money+=15;
+                    }
+                    Debug.Log(-1);
                     randomProbabilityCustomer.Add(0);
                     randomProbabilityCustomer.Add(1);
                     randomProbabilityCustomer.Remove(2);
@@ -85,8 +84,12 @@ public class customerController : MonoBehaviour
                         break;
                 case 1:
                 //ateşli kişi
-                    money += 15;
-                    Debug.Log("01 arttı 23 azaldı");
+                    if (CollectionObject.ilacGenre == 1 || CollectionObject.ilacGenre == 2)
+                    {
+                        Debug.Log(2);
+                        money += 15;
+                    }
+                    Debug.Log(-2);
                     randomProbabilityCustomer.Add(0);
                     randomProbabilityCustomer.Add(1);
                     randomProbabilityCustomer.Remove(2);
@@ -95,8 +98,12 @@ public class customerController : MonoBehaviour
                         break;
                 case 2:
                 //bağımlı kişi
-                    money += 15;
-                    Debug.Log("01 azaldı 23 arttı");
+                    if (CollectionObject.ilacGenre == 3)
+                    {
+                        Debug.Log(3);
+                        money += 50;
+                    }
+                    Debug.Log(-3);
                     randomProbabilityCustomer.Remove(0);
                     randomProbabilityCustomer.Remove(1);
                     randomProbabilityCustomer.Add(2);
@@ -105,8 +112,12 @@ public class customerController : MonoBehaviour
                         break;
                 case 3:
                 //polis kişi
-                    money += 50;
-                    Debug.Log("01 azaldı 3 arttı 2 sabit");
+                    if (CollectionObject.ilacGenre == 0 || CollectionObject.ilacGenre == 1)
+                    {
+                        Debug.Log(4);
+                        money += 15;
+                    }
+                    Debug.Log(-4);
                     randomProbabilityCustomer.Remove(0);
                     randomProbabilityCustomer.Remove(1);
                     randomProbabilityCustomer.Add(3);
