@@ -51,7 +51,10 @@ public class CollectionObject : MonoBehaviour
     void Update()
     {
         Debug.Log(ilacGenre);
+        
         Combiningk57s();
+        
+        
         Combiningb69k();
     }
 
@@ -247,7 +250,7 @@ public class CollectionObject : MonoBehaviour
             {
                 recipeControl = true;
             }
-            
+
         }
     }
 
@@ -408,6 +411,7 @@ public class CollectionObject : MonoBehaviour
 
     void Combiningk57s()
     {
+        
         if (dustCont && sudaCont && metiCont)
         {
             if (a<1)
@@ -415,32 +419,31 @@ public class CollectionObject : MonoBehaviour
                 kbutton.gameObject.SetActive(true);
                 a += 1;
             }
-            if (Input.GetKey(KeyCode.K))
+            
+            if (Input.GetKey(KeyCode.K) )
             {
-                k57sBall.SetActive(true);
-                sudaTable.SetActive(false);
-                metiTable.SetActive(false);
-                dustTable.SetActive(false);
+                    k57sBall.SetActive(true);
+                    sudaTable.SetActive(false);
+                    metiTable.SetActive(false);
+                    dustTable.SetActive(false);
                 
-                dustBall.gameObject.SetActive(false);
-                ilacBall.gameObject.SetActive(false);
-                metiBall.gameObject.SetActive(false);
-                sudaBall.gameObject.SetActive(false);
-                ilac2Ball.gameObject.SetActive(false);
-                lbutton.gameObject.SetActive(true);
-                kbutton.gameObject.SetActive(false);
-                
+                    dustBall.gameObject.SetActive(false);
+                    ilacBall.gameObject.SetActive(false);
+                    metiBall.gameObject.SetActive(false);
+                    sudaBall.gameObject.SetActive(false);
+                    ilac2Ball.gameObject.SetActive(false);
+                    lbutton.gameObject.SetActive(true);
+                    kbutton.gameObject.SetActive(false);
             }
             if (Input.GetKey(KeyCode.L))
             {
-                k57sBall.SetActive(false);
-                k57sImage.gameObject.SetActive(true);
-                ilacGenre = 3;
-                k57sTable.SetActive(false);
-                K57s += 1;
-                lbutton.gameObject.SetActive(false);
+                    k57sBall.SetActive(false);
+                    k57sImage.gameObject.SetActive(true);
+                    ilacGenre = 3;
+                    k57sTable.SetActive(false);
+                    K57s += 1;
+                    lbutton.gameObject.SetActive(false);
             }
-            
         }
         
         

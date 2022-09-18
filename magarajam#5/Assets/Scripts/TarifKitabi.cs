@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TarifKitabi : MonoBehaviour
 {
-    public GameObject _recipe;
+    public GameObject _recipe, img1, img2;
     void Update()
     {
         if (CollectionObject.recipeControl)
@@ -17,7 +17,13 @@ public class TarifKitabi : MonoBehaviour
     public void exitButton()
     {
         CollectionObject.recipeControl = false;
+        img2.gameObject.SetActive(false);
         _recipe.SetActive(false);
-        
+    }
+
+    public void nextButton()
+    {
+        CollectionObject.recipeControl = false;
+        img2.gameObject.SetActive(true);
     }
 }
